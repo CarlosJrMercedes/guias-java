@@ -3,16 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Class;
+package GUIA1;
 
 /**
  *
  * @author CarlosJr
  */
-public interface Calculator {
+public interface ProductInterface {
     
-    public int sum(int n1, int n2); 
-    public int substraction(int n1, int n2);
-    public int multiplication(int n1, int n2);
-    public int division(int n1, int n2);
+    public Double calculateShipping(Double price); 
+    
 }

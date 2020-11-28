@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Class;
+package GUIA2;
 import java.util.Scanner;
 /**
  *
  * @author CarlosJr
  */
-public class CalculadoraDigital implements Calculator{
+public class DigitalCalculator extends Calculator{
     
     private int n1;
     private int n2;
@@ -30,53 +30,23 @@ public class CalculadoraDigital implements Calculator{
         this.n2 = n2;
     }
 
-    public CalculadoraDigital() {
+    public DigitalCalculator() {
     }
 
-    public CalculadoraDigital(int n1, int n2) {
+    public DigitalCalculator(int n1, int n2) {
         this.n1 = n1;
         this.n2 = n2;
     }
     
-    public CalculadoraDigital(CalculadoraDigital calcu) {
+    public DigitalCalculator(DigitalCalculator calcu) {
         
         this.n1 = calcu.n1;
         this.n2 = calcu.n2;
         
     }
-    
-    
-
-    @Override
-    public int sum(int n1, int n2) {
-        int result = n1 + n2;
-        
-        return result;
-    }
-
-    @Override
-    public int substraction(int n1, int n2) {
-        int result = n1 - n2;
-        
-        return result;
-    }
-
-    @Override
-    public int multiplication(int n1, int n2) {
-        int result = n1 * n2;
-        
-        return result;
-    }
-
-    @Override
-    public int division(int n1, int n2) {
-        int result = n1 / n2;
-        
-        return result;
-    }
 
     public static void main(String[] args) {
-        CalculadoraDigital cal = new CalculadoraDigital();
+        DigitalCalculator cal = new DigitalCalculator();
         Scanner esc = new Scanner(System.in);
         
         System.out.println("Ingrese el primer número : ");
@@ -101,6 +71,8 @@ public class CalculadoraDigital implements Calculator{
                 cal.division(cal.getN1(), cal.getN2()));
         System.out.println("\n");
     }
+
+    
     
     
 }

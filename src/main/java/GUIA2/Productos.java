@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Class;
+package GUIA2;
+import GUIA1.ProductInterface;
 import java.util.Scanner;
 /**
  *
  * @author CarlosJr
  */
-public class Guia2 implements ProductInterface{
+public class Productos implements ProductInterface{
 
     private String productName;
     private String categorie;
@@ -40,16 +41,16 @@ public class Guia2 implements ProductInterface{
         this.price = price;
     }
 
-    public Guia2() {
+    public Productos() {
     }
 
-    public Guia2(String productName, String categorie, Double price) {
+    public Productos(String productName, String categorie, Double price) {
         this.productName = productName;
         this.categorie = categorie;
         this.price = price;
     }
     
-    public Guia2(Guia2 guia2) {
+    public Productos(Productos guia2) {
         this.productName = guia2.productName;
         this.categorie = guia2.categorie;
         this.price = guia2.price;
@@ -66,7 +67,7 @@ public class Guia2 implements ProductInterface{
     }
 
     public static void main(String[] args) {
-        Guia2 product = new Guia2();
+        Productos product = new Productos();
         Scanner esc = new Scanner(System.in);
         
         
