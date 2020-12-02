@@ -5,13 +5,53 @@
  */
 package PRIMOSHELDON;
 
+import java.util.*;
+
 /**
  *
  * @author CarlosJr
  */
 public class Primo {
     
-    private static int invertirNumero(int numero){
+    
+    private int numPrimo;
+    private int posPrimo;
+
+    public Primo() {
+    }
+
+    public Primo(int numPrimo, int posPrimo) {
+        this.numPrimo = numPrimo;
+        this.posPrimo = posPrimo;
+    }
+    
+    public int getNumPrimo() {
+        return numPrimo;
+    }
+
+    public void setNumPrimo(int numPrimo) {
+        this.numPrimo = numPrimo;
+    }
+
+    public int getPosPrimo() {
+        return posPrimo;
+    }
+
+    public void setPosPrimo(int posPrimo) {
+        this.posPrimo = posPrimo;
+    }
+    
+    private boolean searchPrimo(Collection<Primo> p, int primo , int pos){
+    
+        for (Primo pri : p) {
+            if(pri.getNumPrimo() == primo && pri.getPosPrimo() == pos){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private int invertirNumero(int numero){
         int cifra, inverso = 0;
         while(numero!=0){
             cifra = numero%10;
@@ -21,12 +61,10 @@ public class Primo {
         return inverso;
     }
     
-    
-    private static int primoPosition(int pos){
-        int primoposision = 0;
+    private List<Primo> primoPosition(){
+        List<Primo> listPrimo = new ArrayList<Primo>();
         int primoIteracion= 1;
-        for (int i = 2; i <= 10000; i++) {
-            
+        for (int i = 2; i <= 100000; i++) {
             int cont = 0;
             for (int j = 1; j <= i; j++) {
                 if (i %j == 0) {
@@ -34,73 +72,61 @@ public class Primo {
                 }
             }
             if (cont != 2) {
-                
             }else{
-                
-                if (primoIteracion == pos) {
-                    primoposision = i;
-                }
+                Primo p = new Primo(i, primoIteracion);
+                listPrimo.add(p);
                 primoIteracion++;
             }
         }
-        return primoposision;
+        return listPrimo;
     }
+    
+    private int multiPrimo(int primo){
+        int resultMulti = 0;
+        int result = 1;
+        String numPosition = "";
+        numPosition = String.valueOf(primo);
+//                
+        char[] digits = numPosition.toCharArray();
+
+        for (int j = 0; j < digits.length; j++) {    
+            result = result * Integer.parseInt(String.valueOf(digits[j]));
+            resultMulti = result ;
+
+        }
+       return resultMulti;
+   }
+    
     
     public static void main(String[] args) {
-        int iteracion = 1;
-        int inverso= 0;
-        int posision = 0;
-        int primoposision = 0;
-        int reverPrimoPos = 0;
-        String numPosition = "";
-        int resultMulti = 0;
+        Primo p = new Primo();
+        Primo primo;
+        List<Primo> listPrimo = p.primoPosition();
+        Iterator it = listPrimo.iterator();
         
-        for (int i = 2; i <= 10000; i++) {
-            int cont = 0;
-            for (int j = 1; j <= i; j++) {
-                if (i %j == 0) {
-                    cont++;
-                }
-            }
-            if (cont != 2) {
+        
+        while (it.hasNext()) {
+            primo = (Primo)it.next();
+            
+            
+            int reverPrimo = 0;
+            int reverPrimoPos = 0;
+            
+            
+            reverPrimo = p.invertirNumero(primo.numPrimo);
+            reverPrimoPos = p.invertirNumero(primo.posPrimo);
+            
+            if (p.searchPrimo(listPrimo, reverPrimo, reverPrimoPos)) {
                 
-            }else{
                 
-                inverso = invertirNumero(i);
-                int primoItera = iteracion;
-                posision = invertirNumero(iteracion);
-                primoposision = primoPosition(posision);
-                reverPrimoPos = invertirNumero(primoposision);
-                numPosition = String.valueOf(reverPrimoPos);
-                
-                char[] digits = numPosition.toCharArray();
-                int [] digitsInt = new int[digits.length];
-                for (int j = 0; j < digits.length; j++) {    
-                    digitsInt[j] =  Integer.parseInt(String.valueOf(digits[j]));
-                }
-                int result = 1; 
-                for (int j = 0; j < digitsInt.length; j++) {
-                   result = result * digitsInt[j];
-                   resultMulti = result ;
+                if(p.multiPrimo(reverPrimo) == primo.posPrimo){
+                    System.err.println("Número primo : " + primo.numPrimo + " Posision " + primo.posPrimo);
                 }
                 
-                if (resultMulti == primoItera) {
-                    if (i == reverPrimoPos) {
-//                        System.out.println("El número : " + i + " es primo.");
-//                        System.out.println(inverso);
-//                        System.out.println(primoItera);
-//                        System.out.println(posision);
-//                        System.out.println(primoposision);
-//                        System.out.println(reverPrimoPos);
-//                        System.out.println(resultMulti);
-                        System.out.println("El número :" + i + " es un numero Sheldon..." );
-                    }
-                }
-                iteracion++;
             }
         }
+        
     }
-    
 }
 
 
