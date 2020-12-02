@@ -62,23 +62,22 @@ public class Primo {
     }
     
     private List<Primo> primoPosition(){
-        List<Primo> listPrimo = new ArrayList<Primo>();
-        int primoIteracion= 1;
-        for (int i = 2; i <= 100000; i++) {
-            int cont = 0;
-            for (int j = 1; j <= i; j++) {
-                if (i %j == 0) {
-                    cont++;
+        int div=0, I, con, posi=0;
+        List<Primo> listaPrimo=new ArrayList<Primo>();
+        for (con = 2; con <= 10000; con++) {
+            for (I = 1; I <= con; I++) {
+                if ((con % I) == 0) {
+                    div++;
                 }
             }
-            if (cont != 2) {
-            }else{
-                Primo p = new Primo(i, primoIteracion);
-                listPrimo.add(p);
-                primoIteracion++;
+            if (div <= 2) {
+                posi++;
+                Primo primo=new Primo(con,posi);
+                listaPrimo.add(primo);
             }
+            div = 0;
         }
-        return listPrimo;
+        return listaPrimo;
     }
     
     private int multiPrimo(int primo){
@@ -86,7 +85,7 @@ public class Primo {
         int result = 1;
         String numPosition = "";
         numPosition = String.valueOf(primo);
-//                
+        
         char[] digits = numPosition.toCharArray();
 
         for (int j = 0; j < digits.length; j++) {    
@@ -104,7 +103,7 @@ public class Primo {
         List<Primo> listPrimo = p.primoPosition();
         Iterator it = listPrimo.iterator();
         
-        
+        System.out.println("Los números primos Sheldon son :");
         while (it.hasNext()) {
             primo = (Primo)it.next();
             
@@ -117,8 +116,6 @@ public class Primo {
             reverPrimoPos = p.invertirNumero(primo.posPrimo);
             
             if (p.searchPrimo(listPrimo, reverPrimo, reverPrimoPos)) {
-                
-                
                 if(p.multiPrimo(reverPrimo) == primo.posPrimo){
                     System.err.println("Número primo : " + primo.numPrimo + " Posision " + primo.posPrimo);
                 }
